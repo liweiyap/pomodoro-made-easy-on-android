@@ -23,7 +23,7 @@ class SpinnerManager
         }
     }
 
-    interface SpinnerOnItemSelectedCallback
+    fun interface SpinnerOnItemSelectedCallback
     {
         fun run(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
     }
