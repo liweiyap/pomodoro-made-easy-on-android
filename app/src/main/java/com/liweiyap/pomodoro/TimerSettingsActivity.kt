@@ -28,8 +28,23 @@ class TimerSettingsActivity : AppCompatActivity()
             {}
         }
 
+        val settingsCycleNumberPerSetSpinner: Spinner = findViewById(R.id.settingsCycleNumberPerSetSpinner)
+        settingsCycleNumberPerSetSpinner.adapter = ArrayAdapter(this, R.layout.spinner_item_textview, resources.getStringArray(R.array.cycleNumberPerSetArray))
+        settingsCycleNumberPerSetSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener
+        {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+            {
+                cycleNumberPerSet = parent?.getItemAtPosition(position).toString().toInt()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?)
+            {}
+        }
+
         settingsSetNumberSpinner.setSelection(SpinnerManager.getIndex(settingsSetNumberSpinner, setNumber.toString()))
+        settingsCycleNumberPerSetSpinner.setSelection(SpinnerManager.getIndex(settingsCycleNumberPerSetSpinner, cycleNumberPerSet.toString()))
     }
 
     private var setNumber: Int = 2
+    private var cycleNumberPerSet: Int = 4
 }

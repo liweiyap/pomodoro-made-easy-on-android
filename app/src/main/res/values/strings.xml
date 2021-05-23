@@ -2,8 +2,23 @@
     <string name="app_name">Pomodoro Made Easy</string>
 
     <string name="settingsSetNumberText">No. of sets</string>
-
     <string-array name="setNumberArray">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string name="settingsCycleNumberPerSetText">No. of cycles per set</string>
+    <string-array name="cycleNumberPerSetArray">
         <item>1</item>
         <item>2</item>
         <item>3</item>
