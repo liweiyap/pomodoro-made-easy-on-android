@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,13 +11,15 @@
     tools:context=".TimerSettingsActivity">
 
     <include
-        layout="@layout/settings_setnumber_constraintlayout"
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsSetNumberConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <include
-        layout="@layout/settings_cyclenumberperset_constraintlayout"
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsCycleNumberPerSetConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

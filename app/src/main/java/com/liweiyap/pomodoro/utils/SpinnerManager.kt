@@ -1,5 +1,7 @@
 package com.liweiyap.pomodoro.utils
 
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Spinner
 
 class SpinnerManager
@@ -19,5 +21,10 @@ class SpinnerManager
 
             return 0
         }
+    }
+
+    interface SpinnerOnItemSelectedCallback
+    {
+        fun run(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
     }
 }

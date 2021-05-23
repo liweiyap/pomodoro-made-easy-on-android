@@ -3,9 +3,8 @@ package com.liweiyap.pomodoro
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import com.liweiyap.pomodoro.ui.SettingsConstraintLayout
 import com.liweiyap.pomodoro.utils.SpinnerManager
 
 class TimerSettingsActivity : AppCompatActivity()
@@ -15,34 +14,29 @@ class TimerSettingsActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val settingsSetNumberSpinner: Spinner = findViewById(R.id.settingsSetNumberSpinner)
-        settingsSetNumberSpinner.adapter = ArrayAdapter(this, R.layout.spinner_item_textview, resources.getStringArray(R.array.setNumberArray))
-        settingsSetNumberSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener
+        val settingsSetNumberConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsSetNumberConstraintLayout)
+        settingsSetNumberConstraintLayout.setName(resources.getString(R.string.settingsSetNumberText))
+        settingsSetNumberConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.setNumberArray))
+        settingsSetNumberConstraintLayout.setSpinnerOnItemSelectedCallback(object: SpinnerManager.SpinnerOnItemSelectedCallback
         {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+            override fun run(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
                 setNumber = parent?.getItemAtPosition(position).toString().toInt()
             }
+        })
+        settingsSetNumberConstraintLayout.setSelection(setNumber)
 
-            override fun onNothingSelected(parent: AdapterView<*>?)
-            {}
-        }
-
-        val settingsCycleNumberPerSetSpinner: Spinner = findViewById(R.id.settingsCycleNumberPerSetSpinner)
-        settingsCycleNumberPerSetSpinner.adapter = ArrayAdapter(this, R.layout.spinner_item_textview, resources.getStringArray(R.array.cycleNumberPerSetArray))
-        settingsCycleNumberPerSetSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener
+        val settingsCycleNumberPerSetConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsCycleNumberPerSetConstraintLayout)
+        settingsCycleNumberPerSetConstraintLayout.setName(resources.getString(R.string.settingsCycleNumberPerSetText))
+        settingsCycleNumberPerSetConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.cycleNumberPerSetArray))
+        settingsCycleNumberPerSetConstraintLayout.setSpinnerOnItemSelectedCallback(object: SpinnerManager.SpinnerOnItemSelectedCallback
         {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
+            override fun run(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
             {
                 cycleNumberPerSet = parent?.getItemAtPosition(position).toString().toInt()
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?)
-            {}
-        }
-
-        settingsSetNumberSpinner.setSelection(SpinnerManager.getIndex(settingsSetNumberSpinner, setNumber.toString()))
-        settingsCycleNumberPerSetSpinner.setSelection(SpinnerManager.getIndex(settingsCycleNumberPerSetSpinner, cycleNumberPerSet.toString()))
+        })
+        settingsCycleNumberPerSetConstraintLayout.setSelection(cycleNumberPerSet)
     }
 
     private var setNumber: Int = 2
