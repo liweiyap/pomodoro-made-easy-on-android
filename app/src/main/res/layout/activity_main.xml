@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:weightSum="8"
-    tools:context=".MainActivity">
+    tools:context=".TimerSettingsActivity">
 
     <include
         layout="@layout/settings_setnumber_constraintlayout"

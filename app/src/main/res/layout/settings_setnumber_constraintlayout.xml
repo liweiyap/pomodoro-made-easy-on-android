@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/settingsSetNumberSpinner"
-        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintHorizontal_weight="3"
         android:gravity="center"
         android:textSize="20sp"
         android:text="@string/settingsSetNumberText" />
@@ -25,7 +25,6 @@
         app:layout_constraintLeft_toRightOf="@id/settingsSetNumberTextView"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_weight="1"
-        android:spinnerMode="dropdown"
-        android:entries="@array/setNumberArray" />
+        android:spinnerMode="dropdown" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
