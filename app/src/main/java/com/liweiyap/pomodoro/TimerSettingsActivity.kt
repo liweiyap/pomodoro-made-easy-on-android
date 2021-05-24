@@ -59,6 +59,17 @@ class TimerSettingsActivity : AppCompatActivity()
                 .toInt()
         }
         settingsShortBreakDurationIncreaseConstraintLayout.setSelection("$mShortBreakDurationIncrease min")
+
+        val settingsLongBreakDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsLongBreakDurationConstraintLayout)
+        settingsLongBreakDurationConstraintLayout.setName(resources.getString(R.string.settingsLongBreakDurationText))
+        settingsLongBreakDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.longBreakDurationArray))
+        settingsLongBreakDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mLongBreakDuration = parent?.getItemAtPosition(position)
+                .toString()
+                .filter { it.isDigit() }
+                .toInt()
+        }
+        settingsLongBreakDurationConstraintLayout.setSelection("$mLongBreakDuration min")
     }
 
     private var mSetNumber: Int = 2
@@ -66,4 +77,5 @@ class TimerSettingsActivity : AppCompatActivity()
     private var mWorkOrStudyDuration: Int = 50
     private var mShortBreakDuration: Int = 10
     private var mShortBreakDurationIncrease: Int = 0
+    private var mLongBreakDuration: Int = 60
 }
