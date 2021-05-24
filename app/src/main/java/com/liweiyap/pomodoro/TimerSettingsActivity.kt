@@ -1,6 +1,7 @@
 package com.liweiyap.pomodoro
 
 import android.os.Bundle
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import com.liweiyap.pomodoro.ui.SettingsConstraintLayout
 
@@ -15,7 +16,7 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsSetNumberConstraintLayout.setName(resources.getString(R.string.settingsSetNumberText))
         settingsSetNumberConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.setNumberArray))
         settingsSetNumberConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            mSetNumber = parent?.getItemAtPosition(position).toString().toInt()
+            mSetNumber = parseSettingsValueSpinner(parent, position)
         }
         settingsSetNumberConstraintLayout.setSelection(mSetNumber)
 
@@ -23,7 +24,7 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsCycleNumberPerSetConstraintLayout.setName(resources.getString(R.string.settingsCycleNumberPerSetText))
         settingsCycleNumberPerSetConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.cycleNumberPerSetArray))
         settingsCycleNumberPerSetConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            mCycleNumberPerSet = parent?.getItemAtPosition(position).toString().toInt()
+            mCycleNumberPerSet = parseSettingsValueSpinner(parent, position)
         }
         settingsCycleNumberPerSetConstraintLayout.setSelection(mCycleNumberPerSet)
 
@@ -31,10 +32,7 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsWorkOrStudyDurationConstraintLayout.setName(resources.getString(R.string.settingsWorkOrStudyDurationText))
         settingsWorkOrStudyDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.workOrStudyDurationArray))
         settingsWorkOrStudyDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            mWorkOrStudyDuration = parent?.getItemAtPosition(position)
-                .toString()
-                .filter { it.isDigit() }
-                .toInt()
+            mWorkOrStudyDuration = parseSettingsValueSpinner(parent, position)
         }
         settingsWorkOrStudyDurationConstraintLayout.setSelection("$mWorkOrStudyDuration min")
 
@@ -42,10 +40,7 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsShortBreakDurationConstraintLayout.setName(resources.getString(R.string.settingsShortBreakDurationText))
         settingsShortBreakDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.shortBreakDurationArray))
         settingsShortBreakDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            mShortBreakDuration = parent?.getItemAtPosition(position)
-                .toString()
-                .filter { it.isDigit() }
-                .toInt()
+            mShortBreakDuration = parseSettingsValueSpinner(parent, position)
         }
         settingsShortBreakDurationConstraintLayout.setSelection("$mShortBreakDuration min")
 
@@ -53,10 +48,7 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsShortBreakDurationIncreaseConstraintLayout.setName(resources.getString(R.string.settingsShortBreakDurationIncreaseText))
         settingsShortBreakDurationIncreaseConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.shortBreakDurationIncreaseArray))
         settingsShortBreakDurationIncreaseConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            mShortBreakDurationIncrease = parent?.getItemAtPosition(position)
-                .toString()
-                .filter { it.isDigit() }
-                .toInt()
+            mShortBreakDurationIncrease = parseSettingsValueSpinner(parent, position)
         }
         settingsShortBreakDurationIncreaseConstraintLayout.setSelection("$mShortBreakDurationIncrease min")
 
@@ -64,12 +56,17 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsLongBreakDurationConstraintLayout.setName(resources.getString(R.string.settingsLongBreakDurationText))
         settingsLongBreakDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.longBreakDurationArray))
         settingsLongBreakDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            mLongBreakDuration = parent?.getItemAtPosition(position)
-                .toString()
-                .filter { it.isDigit() }
-                .toInt()
+            mLongBreakDuration = parseSettingsValueSpinner(parent, position)
         }
         settingsLongBreakDurationConstraintLayout.setSelection("$mLongBreakDuration min")
+    }
+
+    private fun parseSettingsValueSpinner(parent: AdapterView<*>?, position: Int): Int
+    {
+        return parent?.getItemAtPosition(position)
+            .toString()
+            .filter { it.isDigit() }
+            .toInt()
     }
 
     private var mSetNumber: Int = 2
