@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,9 +11,51 @@
     tools:context=".TimerSettingsActivity">
 
     <include
-        layout="@layout/settings_setnumber_constraintlayout"
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsSetNumberConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp" />
+
+    <include
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsCycleNumberPerSetConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp" />
+
+    <include
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsWorkOrStudyDurationConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp" />
+
+    <include
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsShortBreakDurationConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp" />
+
+    <include
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsShortBreakDurationIncreaseConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp" />
+
+    <include
+        layout="@layout/settings_constraintlayout"
+        android:id="@+id/settingsLongBreakDurationConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp" />
 
 </LinearLayout>

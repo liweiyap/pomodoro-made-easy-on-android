@@ -1,12 +1,9 @@
 package com.liweiyap.pomodoro
 
 import android.os.Bundle
-import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import com.liweiyap.pomodoro.utils.SpinnerManager
+import com.liweiyap.pomodoro.ui.SettingsConstraintLayout
 
 class TimerSettingsActivity : AppCompatActivity()
 {
@@ -15,21 +12,67 @@ class TimerSettingsActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val settingsSetNumberSpinner: Spinner = findViewById(R.id.settingsSetNumberSpinner)
-        settingsSetNumberSpinner.adapter = ArrayAdapter(this, R.layout.spinner_item_textview, resources.getStringArray(R.array.setNumberArray))
-        settingsSetNumberSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener
-        {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long)
-            {
-                setNumber = parent?.getItemAtPosition(position).toString().toInt()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?)
-            {}
+        val settingsSetNumberConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsSetNumberConstraintLayout)
+        settingsSetNumberConstraintLayout.setName(resources.getString(R.string.settingsSetNumberText))
+        settingsSetNumberConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.setNumberArray))
+        settingsSetNumberConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mSetNumber = parseSettingsValueSpinner(parent, position)
         }
+        settingsSetNumberConstraintLayout.setSelection(mSetNumber)
 
-        settingsSetNumberSpinner.setSelection(SpinnerManager.getIndex(settingsSetNumberSpinner, setNumber.toString()))
+        val settingsCycleNumberPerSetConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsCycleNumberPerSetConstraintLayout)
+        settingsCycleNumberPerSetConstraintLayout.setName(resources.getString(R.string.settingsCycleNumberPerSetText))
+        settingsCycleNumberPerSetConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.cycleNumberPerSetArray))
+        settingsCycleNumberPerSetConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mCycleNumberPerSet = parseSettingsValueSpinner(parent, position)
+        }
+        settingsCycleNumberPerSetConstraintLayout.setSelection(mCycleNumberPerSet)
+
+        val settingsWorkOrStudyDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsWorkOrStudyDurationConstraintLayout)
+        settingsWorkOrStudyDurationConstraintLayout.setName(resources.getString(R.string.settingsWorkOrStudyDurationText))
+        settingsWorkOrStudyDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.workOrStudyDurationArray))
+        settingsWorkOrStudyDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mWorkOrStudyDuration = parseSettingsValueSpinner(parent, position)
+        }
+        settingsWorkOrStudyDurationConstraintLayout.setSelection("$mWorkOrStudyDuration min")
+
+        val settingsShortBreakDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsShortBreakDurationConstraintLayout)
+        settingsShortBreakDurationConstraintLayout.setName(resources.getString(R.string.settingsShortBreakDurationText))
+        settingsShortBreakDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.shortBreakDurationArray))
+        settingsShortBreakDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mShortBreakDuration = parseSettingsValueSpinner(parent, position)
+        }
+        settingsShortBreakDurationConstraintLayout.setSelection("$mShortBreakDuration min")
+
+        val settingsShortBreakDurationIncreaseConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsShortBreakDurationIncreaseConstraintLayout)
+        settingsShortBreakDurationIncreaseConstraintLayout.setName(resources.getString(R.string.settingsShortBreakDurationIncreaseText))
+        settingsShortBreakDurationIncreaseConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.shortBreakDurationIncreaseArray))
+        settingsShortBreakDurationIncreaseConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mShortBreakDurationIncrease = parseSettingsValueSpinner(parent, position)
+        }
+        settingsShortBreakDurationIncreaseConstraintLayout.setSelection("$mShortBreakDurationIncrease min")
+
+        val settingsLongBreakDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsLongBreakDurationConstraintLayout)
+        settingsLongBreakDurationConstraintLayout.setName(resources.getString(R.string.settingsLongBreakDurationText))
+        settingsLongBreakDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.longBreakDurationArray))
+        settingsLongBreakDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mLongBreakDuration = parseSettingsValueSpinner(parent, position)
+        }
+        settingsLongBreakDurationConstraintLayout.setSelection("$mLongBreakDuration min")
     }
 
-    private var setNumber: Int = 2
+    private fun parseSettingsValueSpinner(parent: AdapterView<*>?, position: Int): Int
+    {
+        return parent?.getItemAtPosition(position)
+            .toString()
+            .filter { it.isDigit() }
+            .toInt()
+    }
+
+    private var mSetNumber: Int = 2
+    private var mCycleNumberPerSet: Int = 4
+    private var mWorkOrStudyDuration: Int = 50
+    private var mShortBreakDuration: Int = 10
+    private var mShortBreakDurationIncrease: Int = 0
+    private var mLongBreakDuration: Int = 60
 }
