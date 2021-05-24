@@ -31,6 +31,18 @@ class SettingsConstraintLayout: ConstraintLayout
         mContext = context
     }
 
+    companion object
+    {
+        @JvmStatic
+        fun parseSettingsValueSpinnerSelection(parent: AdapterView<*>?, position: Int): Int
+        {
+            return parent?.getItemAtPosition(position)
+                .toString()
+                .filter { it.isDigit() }
+                .toInt()
+        }
+    }
+
     fun setName(name: String)
     {
         val settingsNameTextView: TextView = findViewById(R.id.settingsNameTextView)
