@@ -64,5 +64,16 @@ class SettingsConstraintLayout: ConstraintLayout
         settingsValueSpinner.setSelection(SpinnerManager.getIndex(settingsValueSpinner, selectedValue.toString()))
     }
 
+    fun setSelection(selectedValue: String)
+    {
+        val settingsValueSpinner: Spinner = findViewById(R.id.settingsValueSpinner)
+        settingsValueSpinner.setSelection(SpinnerManager.getIndex(settingsValueSpinner, selectedValue))
+    }
+
+    fun getSpinner(): Spinner
+    {
+        return (findViewById(R.id.settingsValueSpinner))
+    }
+
     private var mContext: Context
 }

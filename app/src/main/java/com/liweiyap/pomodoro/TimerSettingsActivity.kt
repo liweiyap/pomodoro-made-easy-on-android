@@ -26,8 +26,20 @@ class TimerSettingsActivity : AppCompatActivity()
             cycleNumberPerSet = parent?.getItemAtPosition(position).toString().toInt()
         }
         settingsCycleNumberPerSetConstraintLayout.setSelection(cycleNumberPerSet)
+
+        val settingsWorkOrStudyDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsWorkOrStudyDurationConstraintLayout)
+        settingsWorkOrStudyDurationConstraintLayout.setName(resources.getString(R.string.settingsWorkOrStudyDurationText))
+        settingsWorkOrStudyDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.workOrStudyDurationArray))
+        settingsWorkOrStudyDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            workOrStudyDuration = parent?.getItemAtPosition(position)
+                .toString()
+                .filter { it.isDigit() }
+                .toInt()
+        }
+        settingsWorkOrStudyDurationConstraintLayout.setSelection("$workOrStudyDuration min")
     }
 
     private var setNumber: Int = 2
     private var cycleNumberPerSet: Int = 4
+    private var workOrStudyDuration: Int = 50
 }
