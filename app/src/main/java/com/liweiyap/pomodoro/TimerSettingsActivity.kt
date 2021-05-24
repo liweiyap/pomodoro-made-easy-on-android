@@ -15,31 +15,43 @@ class TimerSettingsActivity : AppCompatActivity()
         settingsSetNumberConstraintLayout.setName(resources.getString(R.string.settingsSetNumberText))
         settingsSetNumberConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.setNumberArray))
         settingsSetNumberConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            setNumber = parent?.getItemAtPosition(position).toString().toInt()
+            mSetNumber = parent?.getItemAtPosition(position).toString().toInt()
         }
-        settingsSetNumberConstraintLayout.setSelection(setNumber)
+        settingsSetNumberConstraintLayout.setSelection(mSetNumber)
 
         val settingsCycleNumberPerSetConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsCycleNumberPerSetConstraintLayout)
         settingsCycleNumberPerSetConstraintLayout.setName(resources.getString(R.string.settingsCycleNumberPerSetText))
         settingsCycleNumberPerSetConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.cycleNumberPerSetArray))
         settingsCycleNumberPerSetConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            cycleNumberPerSet = parent?.getItemAtPosition(position).toString().toInt()
+            mCycleNumberPerSet = parent?.getItemAtPosition(position).toString().toInt()
         }
-        settingsCycleNumberPerSetConstraintLayout.setSelection(cycleNumberPerSet)
+        settingsCycleNumberPerSetConstraintLayout.setSelection(mCycleNumberPerSet)
 
         val settingsWorkOrStudyDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsWorkOrStudyDurationConstraintLayout)
         settingsWorkOrStudyDurationConstraintLayout.setName(resources.getString(R.string.settingsWorkOrStudyDurationText))
         settingsWorkOrStudyDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.workOrStudyDurationArray))
         settingsWorkOrStudyDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
-            workOrStudyDuration = parent?.getItemAtPosition(position)
+            mWorkOrStudyDuration = parent?.getItemAtPosition(position)
                 .toString()
                 .filter { it.isDigit() }
                 .toInt()
         }
-        settingsWorkOrStudyDurationConstraintLayout.setSelection("$workOrStudyDuration min")
+        settingsWorkOrStudyDurationConstraintLayout.setSelection("$mWorkOrStudyDuration min")
+
+        val settingsShortBreakDurationConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsShortBreakDurationConstraintLayout)
+        settingsShortBreakDurationConstraintLayout.setName(resources.getString(R.string.settingsShortBreakDurationText))
+        settingsShortBreakDurationConstraintLayout.setSpinnerValues(resources.getStringArray(R.array.shortBreakDurationArray))
+        settingsShortBreakDurationConstraintLayout.setSpinnerOnItemSelectedCallback { parent, _, position, _ ->
+            mShortBreakDuration = parent?.getItemAtPosition(position)
+                .toString()
+                .filter { it.isDigit() }
+                .toInt()
+        }
+        settingsShortBreakDurationConstraintLayout.setSelection("$mShortBreakDuration min")
     }
 
-    private var setNumber: Int = 2
-    private var cycleNumberPerSet: Int = 4
-    private var workOrStudyDuration: Int = 50
+    private var mSetNumber: Int = 2
+    private var mCycleNumberPerSet: Int = 4
+    private var mWorkOrStudyDuration: Int = 50
+    private var mShortBreakDuration: Int = 10
 }
