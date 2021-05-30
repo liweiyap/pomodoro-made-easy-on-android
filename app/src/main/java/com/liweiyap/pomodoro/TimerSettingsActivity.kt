@@ -1,6 +1,8 @@
 package com.liweiyap.pomodoro
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.appcompat.app.AppCompatActivity
 import com.liweiyap.pomodoro.ui.SettingsConstraintLayout
 
@@ -9,7 +11,9 @@ class TimerSettingsActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_timersettings)
+        setSupportActionBar(findViewById(R.id.timerSettingsActivityToolbar))
+        supportActionBar?.subtitle = "Timer Settings"
 
         val settingsSetNumberConstraintLayout: SettingsConstraintLayout = findViewById(R.id.settingsSetNumberConstraintLayout)
         settingsSetNumberConstraintLayout.setName(resources.getString(R.string.settingsSetNumberText))
@@ -58,6 +62,13 @@ class TimerSettingsActivity : AppCompatActivity()
             mLongBreakDuration = SettingsConstraintLayout.parseSettingsValueSpinnerSelection(parent, position)
         }
         settingsLongBreakDurationConstraintLayout.setSelection("$mLongBreakDuration min")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean
+    {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private var mSetNumber: Int = 2

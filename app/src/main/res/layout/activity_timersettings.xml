@@ -2,13 +2,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainLayout"
+    android:id="@+id/timerSettingsActivityMainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:weightSum="8"
+    android:weightSum="7"
     tools:context=".TimerSettingsActivity">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/timerSettingsActivityToolbar" />
 
     <include
         layout="@layout/settings_constraintlayout"
@@ -57,5 +61,24 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginHorizontal="10dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.125" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.75"
+        android:text="@string/startButtonText"
+        android:textSize="20sp"
+        android:textAllCaps="false" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.125" />
 
 </LinearLayout>
