@@ -87,4 +87,8 @@
         <item>55 min</item>
         <item>60 min</item>
     </string-array>
+
+    <string name="appPrefsButtonTitle">Edit App Preferences</string>
+
+    <string name="startButtonText">Start</string>
 </resources>
